@@ -48,7 +48,8 @@ class FocusController:
 
                     if target_window and target_window != self.last_focused_window:
                         await self.hyprland.focus_window(target_window)
-                        await self.hyprland.move_cursor_to_corner(0)
+                        # Optional: move the cursor to the top left corner of the window if you dont want to see the cursor
+                        # await self.hyprland.move_cursor_to_corner(0)
                         self.last_focused_window = target_window
 
                 # self.tracker.display(image)

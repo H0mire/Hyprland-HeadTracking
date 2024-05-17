@@ -6,14 +6,14 @@ from utilities.hyprland_ipc import HyprlandIPC
 
 
 class HeadTracker(ITracker):
-    def __init__(self, sensitivity=1, camera_index=0):
+    def __init__(self, sensitivity=7, camera_index=0):
         self.cap = cv2.VideoCapture(camera_index)
         self.mp_face_mesh = mp.solutions.face_mesh
         self.face_mesh = self.mp_face_mesh.FaceMesh()
         self.mp_drawing = mp.solutions.drawing_utils
         self.hyprland = HyprlandIPC()
-        self.screen_width, self.screen_height = asyncio.run(
-            self.get_screen_dimensions()
+        self.screen_width, self.screen_height, self.screen_pos_x, self.screen_pos_y = (
+            asyncio.run(self.get_screen_dimensions())
         )
         self.sensitivity = sensitivity
         self.previous_x, self.previous_y = None, None
@@ -42,18 +42,13 @@ class HeadTracker(ITracker):
                     ),
                 )
                 nose_tip = face_landmarks.landmark[1]
-                x = int(nose_tip.x * self.screen_width)
-                y = int(nose_tip.y * self.screen_height)
+                x = int(nose_tip.x * self.screen_width) - self.screen_width / 2
+                y = int(nose_tip.y * self.screen_height) - self.screen_height / 2
+                x = int(x * self.sensitivity + self.screen_width / 2)
+                y = int(y * self.sensitivity + self.screen_height / 2)
 
-                # Skalieren Sie die Veränderung der Position basierend auf der Sensitivität
-                if self.previous_x is not None and self.previous_y is not None:
-                    delta_x = x - self.previous_x
-                    delta_y = y - self.previous_y
-
-                    x = self.previous_x + int(delta_x * self.sensitivity)
-                    y = self.previous_y + int(delta_y * self.sensitivity)
-
-                self.previous_x, self.previous_y = x, y
+                x += self.screen_pos_x
+                y += self.screen_pos_y
                 return x, y, image
 
         return None, None, image

@@ -73,5 +73,10 @@ class HyprlandIPC:
 
         for monitor in response:
             if monitor["focused"]:
-                width, height = monitor["width"], monitor["height"]
-                return width, height
+                width, height, pos_x, pos_y = (
+                    monitor["width"],
+                    monitor["height"],
+                    monitor["x"],
+                    monitor["y"],
+                )
+                return width, height, pos_x, pos_y

@@ -27,14 +27,14 @@ def main():
 
     if args.mode == "head":
         # Execute head_tracking.py
-        tracker = HeadTracker()
+        tracker = HeadTracker(camera_index=args.camera_index)
         controller = FocusController(
             tracker, mouse_control=args.mouse_control
         )  # Pass the mouse_control argument to FocusController
         controller.run()
     elif args.mode == "eye":
         # Execute eye_tracking.py
-        tracker = EyeTracker()
+        tracker = EyeTracker(camera_index=args.camera_index)
         controller = FocusController(
             tracker, mouse_control=args.mouse_control
         )  # Pass the mouse_control argument to FocusController
