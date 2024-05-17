@@ -1,0 +1,4 @@
+mediapipe==0.10.14
+opencv-python==4.9.0.80
+# opencv-python-headless==4.9.0.80
+websockets==12.0

@@ -30,7 +30,7 @@
 5. Launch the Python script:
 
     ```bash
-    python main.py
+    python src/index.py
     ```
 
 6. Follow the on-screen instructions to interact with the project.

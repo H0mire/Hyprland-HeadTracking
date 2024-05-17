@@ -5,6 +5,7 @@ from utilities.hyprland_ipc import HyprlandIPC
 import asyncio
 
 
+# TODO: Make eyetracking work
 class EyeTracker(ITracker):
     def __init__(self, camera_index=0):
         self.cap = cv2.VideoCapture(camera_index)
