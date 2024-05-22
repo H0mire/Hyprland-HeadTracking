@@ -32,18 +32,27 @@ class FocusController:
                             window["size"][0],
                             window["size"][1],
                         )
+                        windows_hidden = window["hidden"]
 
                         if (
                             win_x is not None
                             and win_y is not None
                             and win_width is not None
                             and win_height is not None
+                            and windows_hidden is False
                         ):
                             if (
                                 win_x <= x <= win_x + win_width
                                 and win_y <= y <= win_y + win_height
                             ):
                                 target_window = window_address
+                                for w in windows:
+                                    if (
+                                        w["fullscreen"]
+                                        and w["workspace"] == window["workspace"]
+                                    ):
+                                        target_window = w["address"]
+                                        break
                                 break
 
                     if target_window and target_window != self.last_focused_window:

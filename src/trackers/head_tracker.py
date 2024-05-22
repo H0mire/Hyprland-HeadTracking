@@ -32,15 +32,15 @@ class HeadTracker(ITracker):
 
         if results.multi_face_landmarks:
             for face_landmarks in results.multi_face_landmarks:
-                self.mp_drawing.draw_landmarks(
-                    image=image,
-                    landmark_list=face_landmarks,
-                    connections=self.mp_face_mesh.FACEMESH_TESSELATION,
-                    landmark_drawing_spec=None,
-                    connection_drawing_spec=self.mp_drawing.DrawingSpec(
-                        color=(0, 255, 0), thickness=1, circle_radius=1
-                    ),
-                )
+                # self.mp_drawing.draw_landmarks(
+                #     image=image,
+                #     landmark_list=face_landmarks,
+                #     connections=self.mp_face_mesh.FACEMESH_TESSELATION,
+                #     landmark_drawing_spec=None,
+                #     connection_drawing_spec=self.mp_drawing.DrawingSpec(
+                #         color=(0, 255, 0), thickness=1, circle_radius=1
+                #     ),
+                # )
                 nose_tip = face_landmarks.landmark[1]
                 x = int(nose_tip.x * self.screen_width) - self.screen_width / 2
                 y = int(nose_tip.y * self.screen_height) - self.screen_height / 2
