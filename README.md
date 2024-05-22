@@ -5,7 +5,7 @@
 1. Clone the repository to your local machine:
 
     ```bash
-    git clone https://github.com/your-username/Hyprland-HeadTracking.git
+    git clone https://github.com/H0mire/Hyprland-HeadTracking.git
     ```
 
 2. Navigate to the project directory:
@@ -41,4 +41,4 @@ If you would like to contribute to this project, please follow the guidelines in
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [GNUv3 License](LICENSE).
